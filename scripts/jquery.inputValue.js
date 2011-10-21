@@ -7,7 +7,7 @@
  *    intelligently sets, clears and resets the default value attribute of an
  *    input element                                   
  * @version
- *    1.0
+ *    1.2
  * @requires
  *    jQuery 1.2.6 +
  * @author
