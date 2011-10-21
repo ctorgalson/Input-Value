@@ -24,25 +24,44 @@
  */
 (function($){
   $.fn.inputValue = function(d) {
-    return this.each(function(){
-    	// First, work with the default value:
-    	d = $.trim((d ? d : $(this)[0].defaultValue)); // Use the default form value if no argument is passed to the function...
-      if(d.length < 1) { return; } // Halt execution if there is no default value of any kind...
-      // Set up needed vars:
-      var $i = $(this), // Store the current input element...
-          $f = $i.parents('form'); // Store the parent form of that element...
-      // Work on the input element:
-      $i.val(d)
-        .focus(function(){ // Set up the focus handler...
-          if($.trim($(this).val()) == d) { $(this).val(''); } // Unset field if it contains the default value...
-        })
-        .blur(function(){ // Set up the blur handler...
-          if($.trim($(this).val()).length < 1) { $(this).val(d); } // If the field is empty, insert the default value...
-        });
-      // Work on the form element:
-      $f.submit(function(){ // Set up the submit handler on the form...
-        if($.trim($i.val()) == d) { $i.val(''); } // Unset field if it contains the default value...
-      });
+    return this.each(function(i,e){
+      // We need a collection containing the current element, and we need to 
+      // test the field's value to see if we can continue:
+      var $field = $(e),
+          $originalValue = $.trim(d ? d : $field.val());
+      // Can we continue?
+      if ($originalValue.length < 1) { // Nothing to do in this case...
+        return;
+      }
+      else { // Otherwise, go ahead...
+        var $form = $field.parents('form'); // Store the parent form element...
+        // Set up field event handlers:
+        $field
+          // Focus handler:
+          .focus(function(){
+            // If the field contains the default value when clicked, empty it:
+            if ($.trim($field.val()) == $originalValue) {
+              $field.val('');
+            }
+          })
+          // Blur handler:
+          .blur(function(){
+            // If the field is empty on blur, restore the original value:
+            if ($.trim($field.val()).length < 1) {
+              $field.val($originalValue);
+            }
+          });
+        // Set up form event handler:
+        $form
+          // Submit handler:
+          .submit(function(){
+            // If the field contains the original value on submit, empty it prior
+            // to the form submission:
+            if ($.trim($field.val()) == $originalValue) {
+              $originalValue.val('');
+            }
+          });
+      }      
     });
-  }
+  };
 })(jQuery);
