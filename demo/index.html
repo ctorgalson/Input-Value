@@ -86,13 +86,13 @@
             g.src=('https:'==location.protocol?'//ssl':'//www')+'.google-analytics.com/ga.js';
             s.parentNode.insertBefore(g,s)}(document,'script'));
         </script>
-        <!--[if lte IE 9]><![endif]-->
-        <script src="../scripts/jquery.inputValue.js"></script>
+        <!--[if lte IE 9]>
+        <script src="../scripts/jquery.inputValue.min.js"></script>
         <script>
           $(document).ready(function() {
-            $('#test-input').inputValue('jquery.inputValue.js');
+            $('#test-input').inputValue($('#test-input').attr('placeholder'));
           });
         </script>
-        <!--[if lte IE 9]><![endif]-->
+        <![endif]-->
     </body>
 </html>
