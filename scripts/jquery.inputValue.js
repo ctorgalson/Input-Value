@@ -1,21 +1,13 @@
 /**
  * inputValue jQuery plugin
  * 
- * @name
- *    inputValue
- * @descripton
- *    intelligently sets, clears and resets the default value attribute of an
- *    input element                                   
- * @version
- *    1.2
- * @requires
- *    jQuery 1.2.6 +
- * @author
- *    Christopher Torgalson <manager@bedlamhotel.com>
- * @license
- *    GPL 3
- * @param
- *    string d Default input field value
+ * @name inputValue
+ * @descripton intelligently sets, clears and resets the default value attribute of an input element                                   
+ * @version 1.3
+ * @requires jQuery 1.2.6 +
+ * @author Christopher Torgalson <manager@bedlamhotel.com>
+ * @license GPL 3
+ * @param string d Default input field value
  *
  * Example usage:
  *
