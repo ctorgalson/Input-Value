@@ -35,6 +35,9 @@
       }
       else { // Otherwise, go ahead...
         var $form = $field.parents('form'); // Store the parent form element...
+        if ($field.val().length < 1) {
+          $field.val($originalValue);
+        }
         // Set up field event handlers:
         $field
           // Focus handler:
